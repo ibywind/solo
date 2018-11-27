@@ -209,12 +209,12 @@ public final class SoloServletListener extends AbstractServletListener {
             final PluginRefresher pluginRefresher = beanManager.getReference(PluginRefresher.class);
             eventManager.registerListener(pluginRefresher);
             eventManager.registerListener(new ViewLoadEventHandler());
-            final B3ArticleSender articleSender = beanManager.getReference(B3ArticleSender.class);
-            eventManager.registerListener(articleSender);
-            final B3ArticleUpdater articleUpdater = beanManager.getReference(B3ArticleUpdater.class);
-            eventManager.registerListener(articleUpdater);
-            final B3CommentSender commentSender = beanManager.getReference(B3CommentSender.class);
-            eventManager.registerListener(commentSender);
+//            final B3ArticleSender articleSender = beanManager.getReference(B3ArticleSender.class);
+//            eventManager.registerListener(articleSender);
+//            final B3ArticleUpdater articleUpdater = beanManager.getReference(B3ArticleUpdater.class);
+//            eventManager.registerListener(articleUpdater);
+//            final B3CommentSender commentSender = beanManager.getReference(B3CommentSender.class);
+//            eventManager.registerListener(commentSender);
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, "Register event handlers failed", e);
 

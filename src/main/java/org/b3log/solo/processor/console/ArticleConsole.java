@@ -606,7 +606,10 @@ public class ArticleConsole {
         try {
             final JSONObject currentUser = Solos.getCurrentUser(request, response);
             requestJSONObject.getJSONObject(Article.ARTICLE).put(Article.ARTICLE_AUTHOR_ID, currentUser.getString(Keys.OBJECT_ID));
-
+            // 去除 微信 图片不显示
+            String string = requestJSONObject.getString(Article.ARTICLE_CONTENT);
+            string = string.replaceAll("\\?wx_fmt=png","");
+            requestJSONObject.put(Article.ARTICLE_CONTENT,string);
             final String articleId = articleMgmtService.addArticle(requestJSONObject);
             ret.put(Keys.OBJECT_ID, articleId);
             ret.put(Keys.MSG, langPropsService.get("addSuccLabel"));
