@@ -50,7 +50,7 @@ import java.util.Map;
  *
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
  * @author ArmstrongCN
- * @version 1.3.3.3, Oct 7, 2018
+ * @version 1.3.3.4, Dec 1, 2018
  * @since 0.3.1
  */
 @RequestProcessor
@@ -117,7 +117,7 @@ public class CommentProcessor {
      *                          "commentContent": "",
      *                          "commentOriginalCommentId": "" // optional, if exists this key, the comment is an reply
      */
-    @RequestProcessing(value = "/add-page-comment.do", method = HTTPRequestMethod.POST)
+    @RequestProcessing(value = "/page/comments", method = HTTPRequestMethod.POST)
     public void addPageComment(final HTTPRequestContext context, final JSONObject requestJSONObject) {
         final HttpServletRequest httpServletRequest = context.getRequest();
         final HttpServletResponse httpServletResponse = context.getResponse();
@@ -157,7 +157,7 @@ public class CommentProcessor {
             page.put(Common.PERMALINK, addResult.opt(Common.PERMALINK));
             dataModel.put(Article.ARTICLE, page);
 
-            // https://github.com/b3log/solo/issues/12246
+            // 添加评论优化 https://github.com/b3log/solo/issues/12246
             try {
                 final String skinDirName = (String) httpServletRequest.getAttribute(Keys.TEMAPLTE_DIR_NAME);
                 final Template template = Skins.getSkinTemplate(httpServletRequest, "common-comment.ftl");
@@ -213,7 +213,7 @@ public class CommentProcessor {
      *                          "commentContent": "",
      *                          "commentOriginalCommentId": "" // optional, if exists this key, the comment is an reply
      */
-    @RequestProcessing(value = "/add-article-comment.do", method = HTTPRequestMethod.POST)
+    @RequestProcessing(value = "/article/comments", method = HTTPRequestMethod.POST)
     public void addArticleComment(final HTTPRequestContext context, final JSONObject requestJSONObject) {
         final HttpServletRequest httpServletRequest = context.getRequest();
         final HttpServletResponse httpServletResponse = context.getResponse();
@@ -252,7 +252,7 @@ public class CommentProcessor {
             article.put(Common.PERMALINK, addResult.opt(Common.PERMALINK));
             dataModel.put(Article.ARTICLE, article);
 
-            // https://github.com/b3log/solo/issues/12246
+            // 添加评论优化 https://github.com/b3log/solo/issues/12246
             try {
                 final String skinDirName = (String) httpServletRequest.getAttribute(Keys.TEMAPLTE_DIR_NAME);
                 final Template template = Skins.getSkinTemplate(httpServletRequest, "common-comment.ftl");
